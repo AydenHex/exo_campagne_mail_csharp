@@ -8,7 +8,7 @@ using System.Text;
 
 namespace BusinesssCampagneMail.DAO.implementations
 {
-    class MailDAO : IMailDAO
+    public class MailDAO : IMailDAO
     {
         private EfContext context;
 

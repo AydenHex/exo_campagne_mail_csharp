@@ -8,7 +8,7 @@ using BusinesssCampagneMail.Models;
 
 namespace BusinesssCampagneMail.Service
 {
-    sealed class MailImporter
+    public sealed class MailImporter
     {
         private static MailImporter instance = null;
         private static readonly object padlock = new object();
@@ -86,13 +86,23 @@ namespace BusinesssCampagneMail.Service
                 return false;
             }
 
-            // Trim mail
-            mailData[2] = mailData[2].Trim();
-            if (!Regex.IsMatch(mailData[2], @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            if (!this.CheckMail(mailData[2]))
             {
                 return false;
             }
+            
 
+            return true;
+        }
+
+        public bool CheckMail(string mail)
+        {
+            // Trim mail
+            mail = mail.Trim();
+            if (!Regex.IsMatch(mail, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                return false;
+            }
             return true;
         }
     }

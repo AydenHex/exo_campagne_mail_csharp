@@ -1,6 +1,7 @@
 ﻿using BusinesssCampagneMail.DAO.interfaces;
 using BusinesssCampagneMail.Database;
 using BusinesssCampagneMail.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace BusinesssCampagneMail.DAO.implementations
 {
-    class CampagneDAO : ICampagneDAO
+    public class CampagneDAO : ICampagneDAO
     {
         private EfContext context;
         public CampagneDAO()
@@ -33,6 +34,7 @@ namespace BusinesssCampagneMail.DAO.implementations
         public List<Campagne> GetAll()
         {
             return context.Campagnes
+                .Include(campagne => campagne.mails)
                 .ToList<Campagne>();
         }
 
@@ -40,6 +42,7 @@ namespace BusinesssCampagneMail.DAO.implementations
         {
             return context.Campagnes
                 .Where(campagne => campagne.id.Equals(id))
+                .Include(campagne => campagne.mails)
                 .FirstOrDefault();
         }
 

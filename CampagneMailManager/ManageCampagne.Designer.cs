@@ -34,6 +34,8 @@
             this.email_col = new System.Windows.Forms.ColumnHeader();
             this.button_add_file = new System.Windows.Forms.Button();
             this.button_add_manual = new System.Windows.Forms.Button();
+            this.label_campagne_nom = new System.Windows.Forms.Label();
+            this.button_sauvegarde = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _listview_mails
@@ -42,6 +44,7 @@
             this.nom_col,
             this.prenom_col,
             this.email_col});
+            this._listview_mails.FullRowSelect = true;
             this._listview_mails.HideSelection = false;
             this._listview_mails.Location = new System.Drawing.Point(21, 25);
             this._listview_mails.Name = "_listview_mails";
@@ -49,7 +52,6 @@
             this._listview_mails.TabIndex = 0;
             this._listview_mails.UseCompatibleStateImageBehavior = false;
             this._listview_mails.View = System.Windows.Forms.View.Details;
-            this._listview_mails.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // nom_col
             // 
@@ -68,34 +70,58 @@
             // 
             // button_add_file
             // 
-            this.button_add_file.Location = new System.Drawing.Point(563, 86);
+            this.button_add_file.Location = new System.Drawing.Point(563, 141);
             this.button_add_file.Name = "button_add_file";
             this.button_add_file.Size = new System.Drawing.Size(127, 49);
             this.button_add_file.TabIndex = 1;
             this.button_add_file.Text = "Ajouter via Fichier";
             this.button_add_file.UseVisualStyleBackColor = true;
+            this.button_add_file.Click += new System.EventHandler(this.button_add_file_Click);
             // 
             // button_add_manual
             // 
-            this.button_add_manual.Location = new System.Drawing.Point(563, 286);
+            this.button_add_manual.Location = new System.Drawing.Point(563, 232);
             this.button_add_manual.Name = "button_add_manual";
             this.button_add_manual.Size = new System.Drawing.Size(127, 49);
             this.button_add_manual.TabIndex = 1;
             this.button_add_manual.Text = "Ajouter manuellement";
             this.button_add_manual.UseVisualStyleBackColor = true;
             // 
+            // label_campagne_nom
+            // 
+            this.label_campagne_nom.AutoSize = true;
+            this.label_campagne_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_campagne_nom.Location = new System.Drawing.Point(493, 60);
+            this.label_campagne_nom.Name = "label_campagne_nom";
+            this.label_campagne_nom.Size = new System.Drawing.Size(118, 24);
+            this.label_campagne_nom.TabIndex = 2;
+            this.label_campagne_nom.Text = "Campagne : ";
+            // 
+            // button_sauvegarde
+            // 
+            this.button_sauvegarde.Location = new System.Drawing.Point(563, 318);
+            this.button_sauvegarde.Name = "button_sauvegarde";
+            this.button_sauvegarde.Size = new System.Drawing.Size(127, 49);
+            this.button_sauvegarde.TabIndex = 1;
+            this.button_sauvegarde.Text = "Sauvegarder";
+            this.button_sauvegarde.UseVisualStyleBackColor = true;
+            this.button_sauvegarde.Click += new System.EventHandler(this.button_sauvegarde_Click);
+            // 
             // ManageCampagne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_sauvegarde);
+            this.Controls.Add(this.label_campagne_nom);
             this.Controls.Add(this.button_add_manual);
             this.Controls.Add(this.button_add_file);
             this.Controls.Add(this._listview_mails);
             this.Name = "ManageCampagne";
             this.Text = "MailSender - Campagne";
-            this.Load += new System.EventHandler(this.Home_Load);
+            this.Load += new System.EventHandler(this.ManageCampagne_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -107,6 +133,8 @@
         private System.Windows.Forms.ColumnHeader email_col;
         private System.Windows.Forms.Button button_add_file;
         private System.Windows.Forms.Button button_add_manual;
+        private System.Windows.Forms.Label label_campagne_nom;
+        private System.Windows.Forms.Button button_sauvegarde;
     }
 }
 

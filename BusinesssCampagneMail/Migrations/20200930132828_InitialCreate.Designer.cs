@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusinesssCampagneMail.Migrations
 {
     [DbContext(typeof(EfContext))]
-    [Migration("20200930122832_InitialCreate")]
+    [Migration("20200930132828_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

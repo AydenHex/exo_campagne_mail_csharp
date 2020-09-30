@@ -20,23 +20,7 @@ namespace CampagneMailManager
             this.campagneDAO = new CampagneDAO();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void Home_Load(object sender, EventArgs e)
+        public void Home_Load(object sender, EventArgs e)
         {
             chargerCampagne();
         }
@@ -44,6 +28,7 @@ namespace CampagneMailManager
         private void button_cree_campagne_Click(object sender, EventArgs e)
         {
             PromptCreerCampagne prompt = new PromptCreerCampagne(this.campagneDAO, this);
+            prompt.ShowDialog();
         }
 
         public void chargerCampagne()
@@ -52,8 +37,20 @@ namespace CampagneMailManager
             foreach (Campagne campagne in campagneDAO.GetAll())
             {
                 ListViewItem item = new ListViewItem(campagne.nom);
-                item.Tag = campagne.id;
+                item.Tag = campagne ;
                 _listview_campagnes.Items.Add(item);
+            }
+        }
+
+        private void _listview_campagnes_Click(object sender, EventArgs e)
+        {
+            if (_listview_campagnes.SelectedItems.Count >= 1)
+            {
+                ListViewItem item = _listview_campagnes.SelectedItems[0];
+
+                ManageCampagne manageCampagne = new ManageCampagne(this, (Campagne)item.Tag);
+                manageCampagne.Show();
+                this.Hide();
             }
         }
     }

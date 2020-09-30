@@ -37,6 +37,7 @@
             // 
             this._listview_campagnes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.col_nom_campagne});
+            this._listview_campagnes.FullRowSelect = true;
             this._listview_campagnes.HideSelection = false;
             this._listview_campagnes.Location = new System.Drawing.Point(76, 32);
             this._listview_campagnes.Name = "_listview_campagnes";
@@ -44,6 +45,7 @@
             this._listview_campagnes.TabIndex = 0;
             this._listview_campagnes.UseCompatibleStateImageBehavior = false;
             this._listview_campagnes.View = System.Windows.Forms.View.Details;
+            this._listview_campagnes.Click += new System.EventHandler(this._listview_campagnes_Click);
             // 
             // col_nom_campagne
             // 
