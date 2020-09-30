@@ -52,6 +52,8 @@
             this._listview_mails.TabIndex = 0;
             this._listview_mails.UseCompatibleStateImageBehavior = false;
             this._listview_mails.View = System.Windows.Forms.View.Details;
+            this._listview_mails.SelectedIndexChanged += new System.EventHandler(this._listview_mails_SelectedIndexChanged);
+            this._listview_mails.MouseClick += new System.Windows.Forms.MouseEventHandler(this._listview_mails_MouseClick);
             // 
             // nom_col
             // 
@@ -86,6 +88,7 @@
             this.button_add_manual.TabIndex = 1;
             this.button_add_manual.Text = "Ajouter manuellement";
             this.button_add_manual.UseVisualStyleBackColor = true;
+            this.button_add_manual.Click += new System.EventHandler(this.button_add_manual_Click);
             // 
             // label_campagne_nom
             // 

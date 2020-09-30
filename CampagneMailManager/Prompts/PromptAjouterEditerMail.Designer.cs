@@ -123,7 +123,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_prenom;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox tb_email;
     }
 }

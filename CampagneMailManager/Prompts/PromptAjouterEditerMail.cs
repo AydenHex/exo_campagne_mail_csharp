@@ -16,23 +16,34 @@ namespace CampagneMailManager.Prompts
         private MailDAO mailDAO;
         private Mail mail;
         private int campagneId;
-        public PromptAjouterEditerMail(Mail mail)
+        private ManageCampagne manageCamapgne;
+        public PromptAjouterEditerMail(Mail mail, ManageCampagne manageCampagne)
         {
             InitializeComponent();
             this.mail = mail;
             this.mailDAO = new MailDAO();
+            this.manageCamapgne = manageCampagne;
+            this.preLoadField();
         }
 
-        public PromptAjouterEditerMail(int campagnaId)
+        public PromptAjouterEditerMail(int campagnaId, ManageCampagne manageCampagne)
         {
             InitializeComponent();
             this.mailDAO = new MailDAO();
             this.campagneId = campagnaId;
+            this.manageCamapgne = manageCampagne;
         }
 
         private void PromptAjouterEditerMail_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void preLoadField()
+        {
+            tb_email.Text = this.mail.email;
+            tb_nom.Text = this.mail.prenom;
+            tb_prenom.Text = this.mail.prenom;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,8 +64,10 @@ namespace CampagneMailManager.Prompts
 
             if (this.mail == null)
             {
-                if (this.mailDAO.Add(new Mail(tb_nom.Text, tb_prenom.Text, tb_email.Text, this.campagneId)))
+                Mail nouveauMail = new Mail(tb_nom.Text, tb_prenom.Text, tb_email.Text, this.campagneId);
+                if (this.mailDAO.Add(nouveauMail))
                 {
+                    this.manageCamapgne.campagne.mails.Add(nouveauMail);
                     MessageBox.Show("Adresse email créer", "add_email", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                
@@ -71,6 +84,9 @@ namespace CampagneMailManager.Prompts
                     MessageBox.Show("Adresse email modifée", "update_email", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+
+            this.manageCamapgne.loadMails();
+            this.Dispose();
 
 
 

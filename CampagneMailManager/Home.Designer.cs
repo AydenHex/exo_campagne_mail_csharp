@@ -45,6 +45,7 @@
             this._listview_campagnes.TabIndex = 0;
             this._listview_campagnes.UseCompatibleStateImageBehavior = false;
             this._listview_campagnes.View = System.Windows.Forms.View.Details;
+            this._listview_campagnes.SelectedIndexChanged += new System.EventHandler(this._listview_campagnes_SelectedIndexChanged);
             this._listview_campagnes.Click += new System.EventHandler(this._listview_campagnes_Click);
             // 
             // col_nom_campagne

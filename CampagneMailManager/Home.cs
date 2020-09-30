@@ -53,5 +53,10 @@ namespace CampagneMailManager
                 this.Hide();
             }
         }
+
+        private void _listview_campagnes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

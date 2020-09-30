@@ -11,12 +11,13 @@ using System.Windows.Forms;
 using BusinesssCampagneMail.DAO.implementations;
 using BusinesssCampagneMail.Models;
 using BusinesssCampagneMail.Service;
+using CampagneMailManager.Prompts;
 
 namespace CampagneMailManager
 {
     public partial class ManageCampagne : Form
     {
-        private Campagne campagne;
+        public Campagne campagne;
         private Home home;
         private CampagneDAO campagneDAO;
         private MailDAO mailDAO;
@@ -61,7 +62,7 @@ namespace CampagneMailManager
             }
         }
 
-        private void loadMails() 
+        public void loadMails() 
         {
             _listview_mails.Items.Clear();
             foreach(Mail mail in campagne.mails)
@@ -84,12 +85,37 @@ namespace CampagneMailManager
         {
             foreach(Mail mail in this.campagne.mails)
             {
-                if (!this.mailDAO.Add(mail))
+                if (mail.id == 0)
                 {
-                    MessageBox.Show("Le mail : " + mail.email + " n'a pas pu être sauvager", "error_save_mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!this.mailDAO.Add(mail))
+                    {
+                        MessageBox.Show("Le mail : " + mail.email + " n'a pas pu être sauvager", "error_save_mail", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             MessageBox.Show("Sauvegarde terminée", "save_ok", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void _listview_mails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _listview_mails_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_listview_mails.SelectedItems.Count >= 1)
+            {
+                ListViewItem item = _listview_mails.SelectedItems[0];
+
+                PromptAjouterEditerMail editerMail = new PromptAjouterEditerMail((Mail)item.Tag, this);
+                editerMail.ShowDialog();
+            }
+        }
+
+        private void button_add_manual_Click(object sender, EventArgs e)
+        {
+            PromptAjouterEditerMail ajouterMail = new PromptAjouterEditerMail(this.campagne.id, this);
+            ajouterMail.ShowDialog();
         }
     }
 }
